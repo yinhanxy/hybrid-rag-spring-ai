@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: hybrid-rag-spring-ai
+  datasource:
+    url: jdbc:h2:mem:ragdb;MODE=PostgreSQL;DB_CLOSE_DELAY=-1;INIT=RUNSCRIPT FROM 'classpath:db/schema.sql'
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: ""
+  h2:
+    console:
+      enabled: false
+
+app:
+  embedding:
+    dimension: 1024
+  chunk:
+    max-chars: 1000
+    overlap-chars: 150
+  retrieval:
+    rrf-k: 60
+    vector-weight: 0.7
+    text-weight: 0.3
+    candidate-multiplier: 3
+    cache-enabled: true
+    cache-ttl-seconds: 300
+    thread-pool-size: 4
